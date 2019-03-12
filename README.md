@@ -10,4 +10,3 @@ My implementation will utilize AWS Lambda and CloudWatch.
 *Requests
 *psycopg2 
 *pytest
-*json

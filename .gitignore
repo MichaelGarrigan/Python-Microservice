@@ -1,3 +1,6 @@
 
 .vscode
 logfile
+
+# db connection secrets
+config.py
