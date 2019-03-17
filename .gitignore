@@ -4,3 +4,5 @@ logfile
 
 # db connection secrets
 config.py
+
+**/__pycache__
