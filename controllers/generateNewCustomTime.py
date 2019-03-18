@@ -1,5 +1,6 @@
 
 from models.customTimeModel import retrieveOldCustomTime
+from helperFunctions.incrementOldTime import incrementOldTime
 
 # connect to db
 def newCustomTime(dbConnection, cursor):
@@ -8,7 +9,8 @@ def newCustomTime(dbConnection, cursor):
   oldTime = retrieveOldCustomTime(dbConnection, cursor)
   oldTimeAsAList = oldTime[0]
 
-  print('oldTimeList', oldTimeAsAList)
+  # Increment the old time by five minutes
+  updatedTime = incrementOldTime(oldTimeAsAList)
   
   
   # increment time and save to a variable

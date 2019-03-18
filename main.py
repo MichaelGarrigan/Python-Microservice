@@ -6,7 +6,7 @@ import datetime
 
 # Entry Point for AWS Lambda Service
 def handle_main(event, context):
-
+  
   # connect to postgres db
   dbConnection = connectToDB()
 
