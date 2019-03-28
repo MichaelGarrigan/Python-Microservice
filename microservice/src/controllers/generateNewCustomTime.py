@@ -13,14 +13,8 @@ def newCustomTime(dbConnection, cursor):
 
   # query db for last time recorded
   oldTime = retrieveOldCustomTime(dbConnection, cursor)
-  
-  print('old Time: ', oldTime)
-  oldTimeAsAList = oldTime[0]
 
-  # Increment the old time by five minutes
-  # updatedTime = incrementOldTime(oldTimeAsAList)
-  
-  
-  # increment time and save to a variable
-
-  # write new time to db
+  if (time_now_rounded == oldTime): 
+    return False
+  else: 
+    return time_now_rounded
