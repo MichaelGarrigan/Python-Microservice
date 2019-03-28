@@ -1,8 +1,7 @@
 
 .vscode
-logfile
 
 # db connection secrets
-config.py
+microservice/src/helperFunctions/config.py
 
 **/__pycache__
