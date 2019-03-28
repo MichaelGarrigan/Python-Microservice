@@ -4,16 +4,18 @@
 
 @param (dbConnection) -> db connection object
 @param (cursor) -> db cursor object
-@return -> a python tuple with a single list of 5 integers
+@return -> a python list of 5 integers that means [year, month, day, hour, minute]
 
-@about -> This model will only retrieve the same row from the same table with every call.
+@about -> This model will retrieve the last row from the same table with every call.
        -> The column 'time_custom' will have a value that constantly changes every five minutes.
 '''
 
 def retrieveOldCustomTime(dbConnection, cursor):
-  sql = 'SELECT time_custom FROM last_custom_time_stamp WHERE id=1'
+  sql = 'SELECT time_custom FROM last_custom_time_stamp ORDER BY id DESC LIMIT 1'
   cursor.execute(sql)
-  return cursor.fetchone()
+  oldTimeTuple = cursor.fetchone()
+
+  return oldTimeTuple[0]
 
 # 2) insert new time into last_custom_time_stamp table
 
