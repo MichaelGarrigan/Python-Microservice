@@ -5,3 +5,7 @@
 microservice/src/helperFunctions/config.py
 
 **/__pycache__
+
+microservice/bin/*
+microservice/lib/*
+microservice/include/*
