@@ -1,6 +1,6 @@
 
 import psycopg2
-from config import db
+from helperFunctions.config import db
 
 '''
 Attempt to establish a postgresql connection

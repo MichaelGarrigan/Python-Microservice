@@ -1,8 +1,7 @@
 
-from dbConnection import connectToDB
+from db.dbConnection import connectToDB
 from controllers.generateNewCustomTime import newCustomTime
 import psycopg2
-import datetime
 
 # Entry Point for AWS Lambda Service
 def handle_main(event, context):
