@@ -28,7 +28,6 @@ def retrieveOldCustomTime(dbConnection, cursor):
 '''
 
 def insertNewCustomTime(dbConnection, cursor, time):
-  print('time model: ', time)
   query = sql.SQL('INSERT INTO last_custom_time_stamp (time_custom) VALUES ({})').format(sql.Literal(time))
   cursor.execute(query)
   dbConnection.commit()
