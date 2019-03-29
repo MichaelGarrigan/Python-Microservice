@@ -7,3 +7,7 @@ dbconfig = {
   'port': "5432",
   'database': "your_db_name"
 }
+
+twitch = {
+  'Client-ID': "your_twitch_key"
+}
