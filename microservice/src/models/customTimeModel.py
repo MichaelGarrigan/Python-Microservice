@@ -1,4 +1,6 @@
 
+from psycopg2 import sql
+
 '''
 @name -> retrieveOldCustomTime 
 
@@ -11,16 +13,22 @@
 '''
 
 def retrieveOldCustomTime(dbConnection, cursor):
-  sql = 'SELECT time_custom FROM last_custom_time_stamp ORDER BY id DESC LIMIT 1'
-  cursor.execute(sql)
+  query = 'SELECT time_custom FROM last_custom_time_stamp ORDER BY id DESC LIMIT 1'
+  cursor.execute(query)
   oldTimeTuple = cursor.fetchone()
 
   return oldTimeTuple[0]
 
-# 2) insert new time into last_custom_time_stamp table
 
-# query = """ 
-#       INSERT INTO top_games (GAME_ID, NAME, BOX_ART_URL) VALUES (%s,%s,%s)"""
-#     values = (item['id'], item['name'], item['box_art_url'])
-#     cursor.execute(query, values)
-#     connection.commit()
+'''
+@name -> insertNewCustomTime 
+@param (dbConnection) -> db connection object
+@param (cursor) -> db cursor object
+@return -> None
+'''
+
+def insertNewCustomTime(dbConnection, cursor, time):
+  print('time model: ', time)
+  query = sql.SQL('INSERT INTO last_custom_time_stamp (time_custom) VALUES ({})').format(sql.Literal(time))
+  cursor.execute(query)
+  dbConnection.commit()
