@@ -2,6 +2,7 @@
 from db.dbConnection import connectToDB
 from controllers.generateNewCustomTime import newCustomTime
 from controllers.apiTopGames import retrieveTopGames
+from models.customTimeModel import insertNewCustomTime
 import psycopg2
 
 # Entry Point for AWS Lambda Service
@@ -21,6 +22,7 @@ def handle_main(event, context):
     
     if(time):
       # insert time into db
+      insertNewCustomTime(dbConnection, cursor, time)
 
       # Get top games from twitch api and insert into db
       retrieveTopGames(dbConnection, cursor, time)
