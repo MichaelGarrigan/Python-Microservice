@@ -1,8 +1,35 @@
 
-# call twitch api for current top game data
+import requests
+import json
+from models.topGamesModel import insertTopGames
+from helperFunctions.config import twitch
 
-# check to see if any new data needs to be added to top_games_static table
-# use models/topGamesStaticModel.py
-# => if yes add it to that table
+def callTwitchApi():
+    url = 'https://api.twitch.tv/helix/games/top'
+    payload = {'first': '15'}
+    headers = {'Client-ID': twitch['Client-ID']}
 
-# then add data to db with models/topGamesModel.py
+    res = requests.get(url, params=payload, headers=headers)
+
+    # parse from json
+    topGames = json.loads(res.text)
+    topGamesList = topGames['data']
+
+    print('top games: ', topGamesList)
+    print('top games: ', type(topGamesList))
+    print('top games: ', len(topGamesList))
+
+    return topGamesList
+
+def retrieveTopGames(dbConnection, cursor, time):
+
+  games = callTwitchApi()
+
+  # iterate over games
+  # for game in games:
+    # see if this game in top_games_static table
+    # use models/topGamesStaticModel.py
+    # if no, then add it
+
+  # then add data to db with models/topGamesModel.py
+  # insertTopGames(dbConnection, cursor, time, topGames) 

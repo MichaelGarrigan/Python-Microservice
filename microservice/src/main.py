@@ -1,6 +1,7 @@
 
 from db.dbConnection import connectToDB
 from controllers.generateNewCustomTime import newCustomTime
+from controllers.apiTopGames import retrieveTopGames
 import psycopg2
 
 # Entry Point for AWS Lambda Service
@@ -16,14 +17,16 @@ def handle_main(event, context):
     cursor = dbConnection.cursor()
     
     # Generate Custom Time with /controllers/generateNewCustomTime.py
-    print('select: ', newCustomTime(dbConnection, cursor))
-    # --TODO-- capture this in a variable and sent to a new function to process it
+    time = newCustomTime(dbConnection, cursor)
+    
+    if(time):
+      # insert time into db
 
-    # Get top games from twitch api and insert into db
-    # => /controllers/apiTopGames.py
+      # Get top games from twitch api and insert into db
+      retrieveTopGames(dbConnection, cursor, time)
 
-    # Get top streamers from twitch api and insert into db
-    # => /controllers/apiTopStreamers.py
+      # Get top streamers from twitch api and insert into db
+      # => /controllers/apiTopStreamers.py
 
     # disconnect from postgres db
     cursor.close()
