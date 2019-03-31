@@ -2,6 +2,7 @@
 from db.dbConnection import connectToDB
 from controllers.generateNewCustomTime import newCustomTime
 from controllers.apiTopGames import retrieveTopGames
+from controllers.apiTopStreamers import retrieveTopStreamers
 from models.customTimeModel import insertNewCustomTime
 import psycopg2
 
@@ -28,7 +29,7 @@ def handle_main(event, context):
       retrieveTopGames(dbConnection, cursor, time)
 
       # Get top streamers from twitch api and insert into db
-      # => /controllers/apiTopStreamers.py
+      retrieveTopStreamers(dbConnection, cursor, time)
 
     # disconnect from postgres db
     cursor.close()
